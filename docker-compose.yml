@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2023 Baking Bad <hello@bakingbad.dev>
+#
+# SPDX-License-Identifier: MIT
+
+version: "3.8"
+services:
+  operator:
+    image: etherlink:${TAG}
+    command: run_node
+    restart: "no"
+    env_file:
+      - .env
+      # TAG e.g. v18 or master
+      # NETWORK e.g. nairobinet
+      # ROLLUP_ADDRESS e.g. sr1...
+      # OPERATOR_KEY e.g. unencrypted:edsk...
+    ports:
+      - 127.0.0.1:8932:8932
+    networks:
+      - internal
+
+  facade:
+    image: etherlink:${TAG}
+    entrypoint: /usr/bin/octez-evm-node
+    command: run proxy with endpoint http://operator:8932 --rpc-addr "0.0.0.0" --rpc-port 8545
+    restart: always
+    ports:
+      - 127.0.0.1:8545:8545
+    networks:
+      - internal
+
+networks:
+  internal:
