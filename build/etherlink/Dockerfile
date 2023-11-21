@@ -36,6 +36,6 @@ COPY --from=octez /usr/local/bin/octez-evm-node /usr/bin/octez-evm-node
 COPY --from=builder /build/bin/wasm_2_0_0/ /root/wasm_2_0_0/
 ARG PACKAGE
 COPY --from=builder /build/bin/${PACKAGE}_installer.wasm /root/kernel.wasm
-COPY ./entrypoint.sh .
+COPY ./build/etherlink/entrypoint.sh .
 RUN chmod +x entrypoint.sh && ln ./entrypoint.sh /usr/bin/operator
 ENTRYPOINT [ "./entrypoint.sh" ]

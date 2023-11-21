@@ -4,7 +4,7 @@
 
 .PHONY: test
 
--include nairobi.env
+-include envs/etherlink-nairobi.env
 
 BIN_DIR:=$$PWD/bin
 TARGET_DIR=$$PWD/target
@@ -39,7 +39,7 @@ build-operator:
 	$(MAKE) build-installer PACKAGE=$(PACKAGE)
 
 image-etherlink:
-	docker build -t etherlink:$(OCTEZ_TAG) --file ./Dockerfile \
+	docker build -t etherlink:$(OCTEZ_TAG) --file ./build/etherlink/Dockerfile \
 		--build-arg OCTEZ_TAG=$(OCTEZ_TAG) \
 		--build-arg OCTEZ_PROTO=$(OCTEZ_PROTO) \
 		--build-arg PACKAGE=$(PACKAGE) \
