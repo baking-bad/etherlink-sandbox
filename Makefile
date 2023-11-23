@@ -13,7 +13,7 @@ PACKAGE=evm_kernel
 CI_COMMIT_SHA=dev
 
 install:
-	cargo install tezos-smart-rollup-installer
+	cargo install tezos-smart-rollup-installer --locked
 	cd $(CARGO_BIN_PATH) \
 		&& wget -c https://github.com/WebAssembly/binaryen/releases/download/version_111/binaryen-version_111-x86_64-linux.tar.gz -O - | tar -xzv binaryen-version_111/bin/wasm-opt --strip-components 2 \
 		&& wget -c https://github.com/WebAssembly/wabt/releases/download/1.0.31/wabt-1.0.31-ubuntu.tar.gz -O - | tar -xzv wabt-1.0.31/bin/wasm-strip wabt-1.0.31/bin/wasm2wat --strip-components 2
