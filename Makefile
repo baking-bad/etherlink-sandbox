@@ -11,6 +11,7 @@ TARGET_DIR=$$PWD/target
 CARGO_BIN_PATH:=$$HOME/.cargo/bin
 PACKAGE=evm_kernel
 CI_COMMIT_SHA=dev
+INSTALLER_CONF_PATH=$$PWD/tezos/src/kernel_evm/config/dev.yaml
 
 install:
 	cargo install tezos-smart-rollup-installer --locked
@@ -31,7 +32,8 @@ build-installer:
 	smart-rollup-installer get-reveal-installer \
 		--upgrade-to $(BIN_DIR)/$(PACKAGE).wasm \
 		--output $(BIN_DIR)/$(PACKAGE)_installer.wasm \
-		--preimages-dir $(BIN_DIR)/wasm_2_0_0
+		--preimages-dir $(BIN_DIR)/wasm_2_0_0 \
+		--setup-file $(INSTALLER_CONF_PATH)
 
 build-operator:
 	mkdir $(BIN_DIR) || true
