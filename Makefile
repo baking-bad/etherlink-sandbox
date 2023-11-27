@@ -46,6 +46,7 @@ image-etherlink:
 		--build-arg OCTEZ_PROTO=$(OCTEZ_PROTO) \
 		--build-arg PACKAGE=$(PACKAGE) \
 		--build-arg TEZOS_REPO=$(TEZOS_REPO) \
+		--build-arg TEZOS_REPO_BRANCH=$(TEZOS_REPO_BRANCH) \
 		--build-arg CI_COMMIT_SHA=$(CI_COMMIT_SHA) \
 		.
 
@@ -55,6 +56,7 @@ run-operator:
 		OCTEZ_PROTO=$(OCTEZ_PROTO) \
 		PACKAGE=$(PACKAGE) \
 		TEZOS_REPO=$(TEZOS_REPO) \
+		TEZOS_REPO_BRANCH=$(TEZOS_REPO_BRANCH) \
 		CI_COMMIT_SHA=$(CI_COMMIT_SHA)
 	docker stop operator || true
 	docker network create etherlink-net || true
@@ -74,6 +76,7 @@ run-facade:
 		OCTEZ_PROTO=$(OCTEZ_PROTO) \
 		PACKAGE=$(PACKAGE) \
 		TEZOS_REPO=$(TEZOS_REPO) \
+		TEZOS_REPO_BRANCH=$(TEZOS_REPO_BRANCH) \
 		CI_COMMIT_SHA=$(CI_COMMIT_SHA)
 	docker stop facade || true
 	docker network create etherlink-net || true
