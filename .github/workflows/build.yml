@@ -49,7 +49,8 @@ jobs:
             OCTEZ_TAG=master
             OCTEZ_PROTO=PtNairob
             PACKAGE=evm_kernel
-            TEZOS_REPO=https://gitlab.com/tezos/tezos.git
+            TEZOS_REPO=https://gitlab.com/baking-bad/tezos.git
+            TEZOS_REPO_BRANCH=feat/token-deposits
             CI_COMMIT_SHA=dev
           push: true
           cache-from: type=gha
