@@ -50,7 +50,7 @@ jobs:
             OCTEZ_PROTO=PtNairob
             PACKAGE=evm_kernel
             TEZOS_REPO=https://gitlab.com/baking-bad/tezos.git
-            TEZOS_REPO_BRANCH=feat/token-deposits
+            TEZOS_REPO_BRANCH=feat/withdrawals-attempt-3
             CI_COMMIT_SHA=dev
           push: true
           cache-from: type=gha
