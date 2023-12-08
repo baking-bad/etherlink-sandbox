@@ -23,6 +23,7 @@ COPY Makefile ./
 RUN make install CARGO_BIN_PATH=/root/.cargo/bin
 ARG TEZOS_REPO
 ARG TEZOS_REPO_BRANCH
+ARG CACHEBUST=1 
 RUN git clone -b ${TEZOS_REPO_BRANCH} --single-branch ${TEZOS_REPO}
 ARG PACKAGE
 ARG CI_COMMIT_SHA
