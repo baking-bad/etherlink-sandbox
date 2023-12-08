@@ -22,11 +22,8 @@ WORKDIR /build
 COPY Makefile ./
 RUN make install CARGO_BIN_PATH=/root/.cargo/bin
 ARG TEZOS_REPO
-RUN git clone ${TEZOS_REPO}
 ARG TEZOS_REPO_BRANCH
-WORKDIR /build/tezos
-RUN git checkout ${TEZOS_REPO_BRANCH}
-WORKDIR /build
+RUN git clone -b ${TEZOS_REPO_BRANCH} --single-branch ${TEZOS_REPO}
 ARG PACKAGE
 ARG CI_COMMIT_SHA
 RUN make build-operator PACKAGE=${PACKAGE} CI_COMMIT_SHA=${CI_COMMIT_SHA}
