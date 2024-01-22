@@ -23,6 +23,7 @@ build-kernel:
 	RUSTC_BOOTSTRAP=1 cargo build --manifest-path=tezos/src/kernel_evm/Cargo.toml --package $(PACKAGE) \
 		--target wasm32-unknown-unknown \
 		--target-dir $(TARGET_DIR) \
+		--features debug,default \
 		--release \
 		-Z sparse-registry \
 		-Z avoid-dev-deps
