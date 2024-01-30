@@ -11,7 +11,7 @@ TARGET_DIR=$$PWD/target
 CARGO_BIN_PATH:=$$HOME/.cargo/bin
 PACKAGE=evm_kernel
 CI_COMMIT_SHA=dev
-INSTALLER_CONF_PATH=$$PWD/tezos/src/kernel_evm/config/dev.yaml
+INSTALLER_CONF_PATH=$$PWD/config/dev.yaml
 
 install:
 	cargo install tezos-smart-rollup-installer --locked

@@ -19,6 +19,7 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN rustup target add wasm32-unknown-unknown
 WORKDIR /build
+COPY config/dev.yaml ./config/dev.yaml
 COPY Makefile ./
 RUN make install CARGO_BIN_PATH=/root/.cargo/bin
 ARG TEZOS_REPO
