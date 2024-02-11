@@ -71,13 +71,13 @@ deploy_rollup() {
             exit 0
         fi
     fi
-   
+
     if [ ! -f "/root/kernel.wasm" ]; then
         echo "Kernel not found"
         exit 1
     fi
     kernel="$(xxd -p "/root/kernel.wasm" | tr -d '\n')"
-    
+
     octez-client --endpoint "$endpoint" originate smart rollup "rollup" from operator of kind wasm_2_0_0 of type "(or (or (pair bytes (ticket (pair nat (option bytes)))) bytes) bytes)" with kernel "$kernel" --burn-cap 999 --force | tee originate.out
     operator_address=$(octez-client --endpoint "$endpoint" show address "operator" 2>&1 | grep Hash | grep -oE "tz.*")
     octez-smart-rollup-node --base-dir "$client_dir" init operator config for "rollup" with operators "$operator_address" --data-dir "$rollup_dir"

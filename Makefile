@@ -4,7 +4,8 @@
 
 .PHONY: test
 
--include envs/etherlink-nairobi.env
+#-include envs/etherlink-nairobi.env
+-include envs/etherlink-oxford.env
 
 BIN_DIR:=$$PWD/bin
 TARGET_DIR=$$PWD/target
@@ -87,10 +88,10 @@ run-facade:
 		--entrypoint=/usr/bin/octez-evm-node \
 		-p 127.0.0.1:8545:8545 \
 		etherlink:$(OCTEZ_TAG) \
-                run \
-				proxy \
-                with \
-                endpoint \
+		run \
+		proxy \
+		with \
+		endpoint \
 		http://operator:8932 \
 		--rpc-addr "0.0.0.0" \
 		--rpc-port 8545
