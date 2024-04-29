@@ -21,7 +21,7 @@ install:
 		&& wget -c https://github.com/WebAssembly/wabt/releases/download/1.0.31/wabt-1.0.31-ubuntu.tar.gz -O - | tar -xzv wabt-1.0.31/bin/wasm-strip wabt-1.0.31/bin/wasm2wat --strip-components 2
 
 build-kernel:
-	RUSTC_BOOTSTRAP=1 cargo build --manifest-path=tezos/src/kernel_evm/Cargo.toml --package $(PACKAGE) \
+	RUSTC_BOOTSTRAP=1 cargo build --manifest-path=tezos/etherlink/kernel_evm/Cargo.toml --package $(PACKAGE) \
 		--target wasm32-unknown-unknown \
 		--target-dir $(TARGET_DIR) \
 		--features debug,default \
