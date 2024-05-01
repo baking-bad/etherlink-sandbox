@@ -5,9 +5,14 @@ instructions:
       to: /evm/ticketer
   - set:
       value: 0000dc0a0713000c1e0200000000000000000000000000000000000000000000
-      to: /evm/eth_accounts/befd2c6ffc36249ebebd21d6df6376ecf3bac448/balance
+      to: /evm/world_state/eth_accounts/befd2c6ffc36249ebebd21d6df6376ecf3bac448/balance
   - set:
       # edpkv59D4wuLBjcvLiJCkqhceCuNALsWUeL63VaewQ9cZuTbRGbBqb
       # `Boostrap.bootstrap1.public_key` in `tezt/lib_tezos/account.ml`
       value: 6564706b763539443477754c426a63764c694a436b7168636543754e414c735755654c3633566165775139635a755462524762427162
       to: /evm/sequencer
+  - set:
+      # see: https://gitlab.com/tezos/tezos/-/blob/master/etherlink/kernel_evm/kernel/src/storage.rs#L1109-1112
+      # same as ticketer
+      value: 4b54315136614e5a396147726f344476424b77684b765664696132556d56477353397a45
+      to: /evm/delayed_bridge
