@@ -32,13 +32,6 @@ import_key() {
             exit 2
         fi
         octez-client --endpoint "$endpoint" import secret key operator "$OPERATOR_KEY"
-
-        echo "Importing sequencer key..."
-        if [ -z "$SEQUENCER_KEY" ]; then
-            echo "SEQUENCER_KEY is not set"
-            exit 2
-        fi
-        octez-client --endpoint "$endpoint" import secret key sequencer "$SEQUENCER_KEY"
     fi
 }
 
@@ -63,6 +56,24 @@ run_node() {
 
     # Write logs to a file: "file-descriptor-path:///kernel_debug.log?name=kernel_debug&chmod=0o644"
     TEZOS_LOG='* -> info' TEZOS_EVENTS_CONFIG=$LOG_CONFIG exec octez-smart-rollup-node --endpoint "$endpoint" -d "$client_dir" run --data-dir "$rollup_dir" --rpc-addr "0.0.0.0"
+}
+
+run_sequencer() {
+    if [ ! -f "$client_dir/secret_keys" ]; then
+        echo "Importing sequencer key..."
+        if [ -z "$SEQUENCER_KEY" ]; then
+            echo "SEQUENCER_KEY is not set"
+            exit 2
+        fi
+        octez-client --endpoint "$endpoint" import secret key sequencer "$SEQUENCER_KEY"
+    fi
+
+    if [ ! -d "$rollup_dir/wasm_2_0_0" ]; then
+        echo "Initializing metadata folder..."
+        cp -R /root/wasm_2_0_0 "$rollup_dir/wasm_2_0_0"
+    fi
+
+    /usr/bin/octez-evm-node run sequencer with endpoint "$ETHERLINK_OPERATOR_ENDPOINT" signing with ${SEQUENCER_KEY} --rpc-addr 0.0.0.0 --rpc-port 8545 --initial-kernel /home/tezos/kernel/evm_installer.wasm --preimages-dir /home/tezos/kernel/_evm_installer_preimages --time-between-blocks 8 --cors-origins '*' --cors-headers '*' --devmode
 }
 
 deploy_rollup() {
@@ -110,6 +121,9 @@ case $command in
     run_node)
         run_node
         ;;
+    run_sequencer)
+        run_sequencer
+        ;;
     deploy_rollup)
         deploy_rollup $@
         ;;
@@ -128,6 +142,7 @@ Available commands:
 
 Daemons:
 - run_node
+- run_sequencer
 
 Commands:
   - account_info
