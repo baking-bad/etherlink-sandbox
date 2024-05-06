@@ -68,7 +68,7 @@ run_sequencer() {
         octez-client --endpoint "$endpoint" import secret key sequencer "$SEQUENCER_KEY"
     fi
 
-    /usr/bin/octez-evm-node run sequencer with endpoint "$ETHERLINK_OPERATOR_ENDPOINT" signing with ${SEQUENCER_KEY} --rpc-addr 0.0.0.0 --rpc-port 8545 --initial-kernel /home/tezos/kernel/evm_installer.wasm --preimages-dir /home/tezos/kernel/_evm_installer_preimages --time-between-blocks 8 --cors-origins '*' --cors-headers '*' --devmode
+    /usr/bin/octez-evm-node run sequencer with endpoint "$ETHERLINK_OPERATOR_ENDPOINT" signing with ${SEQUENCER_KEY} --rpc-addr 0.0.0.0 --rpc-port 8545 --initial-kernel /root/kernel.wasm --preimages-dir /root/wasm_2_0_0 --time-between-blocks 8 --cors-origins '*' --cors-headers '*' --devmode
 }
 
 deploy_rollup() {
