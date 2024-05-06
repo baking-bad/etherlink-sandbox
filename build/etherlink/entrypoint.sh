@@ -32,6 +32,13 @@ import_key() {
             exit 2
         fi
         octez-client --endpoint "$endpoint" import secret key operator "$OPERATOR_KEY"
+
+        echo "Importing sequencer key..."
+        if [ -z "$SEQUENCER_KEY" ]; then
+            echo "SEQUENCER_KEY is not set"
+            exit 2
+        fi
+        octez-client --endpoint "$endpoint" import secret key sequencer "$SEQUENCER_KEY"
     fi
 }
 
