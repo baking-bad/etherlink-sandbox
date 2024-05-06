@@ -11,8 +11,3 @@ instructions:
       # `Boostrap.bootstrap1.public_key` in `tezt/lib_tezos/account.ml`
       value: 6564706b7643746d6563517a7a7a6d616859443271576538765174796136767a4e6767726268754859446f4639594469456261424b71
       to: /evm/sequencer
-  - set:
-      # see: https://gitlab.com/tezos/tezos/-/blob/master/etherlink/kernel_evm/kernel/src/storage.rs#L1109-1112
-      # same as ticketer
-      value: 4b54315136614e5a396147726f344476424b77684b765664696132556d56477353397a45
-      to: /evm/delayed_bridge
