@@ -12,7 +12,7 @@ services:
     env_file:
       - .env
       # TAG e.g. v18 or master
-      # NETWORK e.g. nairobinet
+      # NETWORK e.g. oxfordnet
       # ROLLUP_ADDRESS e.g. sr1...
       # OPERATOR_KEY e.g. unencrypted:edsk...
     volumes:
