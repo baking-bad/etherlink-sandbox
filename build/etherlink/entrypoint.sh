@@ -32,6 +32,12 @@ import_key() {
             exit 2
         fi
         octez-client --endpoint "$endpoint" import secret key operator "$OPERATOR_KEY"
+        echo "Importing batcher key..."
+        if [ -z "$BATCHER_KEY" ]; then
+            echo "BATCHER_KEY is not set"
+            exit 2
+        fi
+        octez-client --endpoint "$endpoint" import secret key batcher "$BATCHER_KEY"
     fi
 }
 
@@ -46,7 +52,7 @@ run_node() {
         fi
         mkdir $rollup_dir || true
         operator_address=$(octez-client --endpoint "$endpoint" show address "operator" 2>&1 | grep Hash | grep -oE "tz.*")
-        octez-smart-rollup-node --base-dir "$client_dir" init operator config for "$ROLLUP_ADDRESS" with operators "$operator_address" --data-dir "$rollup_dir" --history-mode "${HISTORY_MODE:-archive}"
+        octez-smart-rollup-node --base-dir "$client_dir" init operator config for "$ROLLUP_ADDRESS" with operators "$operator_address" batching:batcher --data-dir "$rollup_dir" --history-mode "${HISTORY_MODE:-archive}"
     fi
 
     if [ ! -d "$rollup_dir/wasm_2_0_0" ]; then
