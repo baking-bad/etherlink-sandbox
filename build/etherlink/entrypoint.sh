@@ -66,7 +66,7 @@ run_node() {
         fi
         mkdir $rollup_dir || true
         operator_address=$(octez-client --endpoint "$endpoint" show address "operator" 2>&1 | grep Hash | grep -oE "tz.*")
-        octez-smart-rollup-node --base-dir "$client_dir" init operator config for "$ROLLUP_ADDRESS" with operators "$operator_address" batching:batcher --data-dir "$rollup_dir" --history-mode "${HISTORY_MODE:-archive}"
+        octez-smart-rollup-node --base-dir "$client_dir" init operator config for "$ROLLUP_ADDRESS" with operators "$operator_address" batching:batcher --data-dir "$rollup_dir" --history-mode "${HISTORY_MODE:-archive}" --cors-origins '*' --cors-headers '*'
     fi
 
     if [ ! -d "$rollup_dir/wasm_2_0_0" ]; then
