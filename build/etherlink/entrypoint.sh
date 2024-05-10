@@ -48,7 +48,6 @@ run_octez_node() {
     octez-node config init --network "$TZNETWORK_ADDRESS"
 
     if [[ -n ${SNAPSHOT_URL} ]]; then
-        mkdir -p /snapshot
         wget -O "/snapshot" "${SNAPSHOT_URL}"
         octez-node snapshot import /snapshot
     fi
