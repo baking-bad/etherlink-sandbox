@@ -21,6 +21,9 @@ if [ -z "$NODE_URI" ]; then
     endpoint="https://rpc.tzkt.io/$NETWORK"
 fi
 
+TZNETWORK_ADDRESS="https://teztnets.com/$NETWORK"
+SNAPSHOT_URL="https://snapshots.eu.tzinit.org/$NETWORK/rolling"
+
 command=$1
 shift 1
 
@@ -39,6 +42,18 @@ import_key() {
         fi
         octez-client --endpoint "$endpoint" import secret key batcher "$BATCHER_KEY"
     fi
+}
+
+run_octez_node() {
+    octez-node config init --network "$TZNETWORK_ADDRESS"
+
+    if [[ -n ${SNAPSHOT_URL} ]]; then
+        mkdir -p /snapshot
+        wget -O "/snapshot" "${SNAPSHOT_URL}"
+        octez-node snapshot import /snapshot
+    fi
+
+    octez-node run --rpc-addr=0.0.0.0:8732 --allow-all-rpc 0.0.0.0
 }
 
 run_node() {
@@ -119,6 +134,9 @@ send_message() {
 }
 
 case $command in
+    run_octez_node)
+        run_octez_node
+        ;;
     run_node)
         run_node
         ;;
@@ -142,6 +160,7 @@ case $command in
 Available commands:
 
 Daemons:
+- run_octez_node
 - run_node
 - run_sequencer
 
