@@ -75,7 +75,7 @@ run_node() {
     fi
 
     # Write logs to a file: "file-descriptor-path:///kernel_debug.log?name=kernel_debug&chmod=0o644"
-    TEZOS_LOG='* -> info' TEZOS_EVENTS_CONFIG=$LOG_CONFIG exec octez-smart-rollup-node --endpoint "$endpoint" -d "$client_dir" run --data-dir "$rollup_dir" --rpc-addr "0.0.0.0"
+    TEZOS_LOG='* -> info' TEZOS_EVENTS_CONFIG=$LOG_CONFIG exec octez-smart-rollup-node --endpoint "$endpoint" -d "$client_dir" run --data-dir "$rollup_dir" --rpc-addr "0.0.0.0" --better-errors
 }
 
 run_sequencer() {
