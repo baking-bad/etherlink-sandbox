@@ -54,8 +54,8 @@ jobs:
             OCTEZ_TAG=master
             OCTEZ_PROTO=Proxford
             PACKAGE=evm_kernel
-            TEZOS_REPO=https://gitlab.com/baking-bad/tezos.git
-            TEZOS_REPO_BRANCH=feat/token-deposits-squashed-v3
+            TEZOS_REPO=https://gitlab.com/tezos/tezos.git
+            TEZOS_REPO_BRANCH=master
             CACHEBUST=${{ steps.cachebust.outputs.date }}
             CI_COMMIT_SHA=dev
           push: true
