@@ -11,3 +11,6 @@ instructions:
       # `Boostrap.bootstrap1.public_key` in `tezt/lib_tezos/account.ml`
       value: 6564706b7643746d6563517a7a7a6d616859443271576538765174796136767a4e6767726268754859446f4639594469456261424b71
       to: /evm/sequencer
+  - set:
+      value: cf02b9ca488f8f6f4e28e37aa1bdd16b3f1b2ad8
+      to: /evm/sequencer_pool_address
