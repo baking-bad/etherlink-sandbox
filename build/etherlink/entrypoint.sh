@@ -52,7 +52,7 @@ run_octez_node() {
         octez-node snapshot import /snapshot
     fi
 
-    octez-node run --rpc-addr=0.0.0.0:8732 --allow-all-rpc 0.0.0.0
+    octez-node run --rpc-addr=0.0.0.0:8732 --allow-all-rpc 0.0.0.0 --history-mode full
 }
 
 run_node() {
