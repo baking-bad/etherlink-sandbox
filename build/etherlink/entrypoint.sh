@@ -8,6 +8,7 @@ set -e
 
 client_dir="/root/.tezos-client"
 rollup_dir="/root/.tezos-smart-rollup-node"
+evm_dir="/root/.evm-node"
 endpoint=$NODE_URI
 faucet="https://faucet.$NETWORK.teztnets.xyz"
 
@@ -88,7 +89,19 @@ run_sequencer() {
         octez-client --endpoint "$endpoint" import secret key sequencer "$SEQUENCER_KEY"
     fi
 
-    /usr/bin/octez-evm-node run sequencer with endpoint "$OPERATOR_ENDPOINT" signing with ${SEQUENCER_KEY} --rpc-addr 0.0.0.0 --rpc-port 8545 --initial-kernel /root/kernel.wasm --preimages-dir /root/wasm_2_0_0 --time-between-blocks 8 --cors-origins '*' --cors-headers '*' --devmode
+    mkdir -p $evm_dir
+
+    /usr/bin/octez-evm-node run sequencer \
+        --data-dir $evm_dir \
+        --rollup-node-endpoint "$OPERATOR_ENDPOINT" \
+        --sequencer-key ${SEQUENCER_KEY} \
+        --rpc-addr 0.0.0.0 --rpc-port 8545 \
+        --initial-kernel /root/kernel.wasm \
+        --preimages-dir /root/wasm_2_0_0 \
+        --cors-origins '*' \
+        --cors-headers '*' \
+        --devmode \
+        --verbose
 }
 
 deploy_rollup() {
