@@ -14,3 +14,7 @@ instructions:
   - set:
       value: cf02b9ca488f8f6f4e28e37aa1bdd16b3f1b2ad8
       to: /evm/sequencer_pool_address
+  - set:
+      # KT1DJEE36Dg4DGfH2SPjYtwSdgmjPTuFnD4k
+      value: 4b5431444a45453336446734444766483253506a5974775364676d6a505475466e44346b
+      to: /evm/delayed_bridge
