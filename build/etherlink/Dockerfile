@@ -14,7 +14,6 @@ RUN apt-get install -y -q \
     make \
     libc-dev \
     git \
-    xxd \
     clang
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
@@ -47,6 +46,7 @@ RUN apt-get -qq update && \
     sudo \
     sqlite3 \
     libsqlite3-dev \
+    xxd \
     ca-certificates
 COPY --from=fa-bridge-bins /usr/bin/octez-smart-rollup-node /usr/bin/octez-smart-rollup-node
 COPY --from=fa-bridge-bins /usr/bin/octez-client /usr/bin/octez-client
