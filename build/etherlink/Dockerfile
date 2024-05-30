@@ -24,18 +24,18 @@ COPY Makefile ./
 RUN make install CARGO_BIN_PATH=/root/.cargo/bin
 ARG TEZOS_REPO
 ARG TEZOS_REPO_BRANCH
-ARG CACHEBUST=1 
+ARG CACHEBUST=1
 RUN git clone -b ${TEZOS_REPO_BRANCH} --single-branch ${TEZOS_REPO}
 RUN cd tezos && git log -1
 ARG PACKAGE
 ARG CI_COMMIT_SHA
 RUN make build-operator PACKAGE=${PACKAGE} CI_COMMIT_SHA=${CI_COMMIT_SHA}
 
-FROM ztepler/tezos-fabridge-bins:latest AS evm-node
+FROM ztepler/tezos-fabridge-bins:latest AS fa-bridge-bins
 
-FROM ubuntu:20.04 AS etherlink
-RUN apt-get -qq update
-RUN apt-get install -y \
+FROM ubuntu:22.04 AS etherlink
+RUN apt-get -qq update && \
+    apt-get install -y \
     binutils \
     gcc \
     libgmp-dev \
@@ -45,13 +45,13 @@ RUN apt-get install -y \
     libffi-dev \
     sudo \
     sqlite3 \
-    libsqlite3-dev
-ARG OCTEZ_PROTO
-COPY --from=octez /usr/local/bin/octez-smart-rollup-node-${OCTEZ_PROTO} /usr/bin/octez-smart-rollup-node
-COPY --from=octez /usr/local/bin/octez-client /usr/bin/octez-client
-COPY --from=octez /usr/local/bin/octez-node /usr/bin/octez-node
-COPY --from=octez /usr/share/zcash-params/ /root/.zcash-params/
-COPY --from=evm-node /usr/bin/octez-evm-node /usr/bin/octez-evm-node
+    libsqlite3-dev \
+    ca-certificates
+COPY --from=fa-bridge-bins /usr/bin/octez-smart-rollup-node /usr/bin/octez-smart-rollup-node
+COPY --from=fa-bridge-bins /usr/bin/octez-client /usr/bin/octez-client
+COPY --from=fa-bridge-bins /usr/bin/octez-node /usr/bin/octez-node
+COPY --from=fa-bridge-bins /usr/share/zcash-params/ /root/.zcash-params/
+COPY --from=fa-bridge-bins /usr/bin/octez-evm-node /usr/bin/octez-evm-node
 COPY --from=builder /build/bin/wasm_2_0_0/ /root/wasm_2_0_0/
 ARG PACKAGE
 COPY --from=builder /build/bin/${PACKAGE}_installer.wasm /root/kernel.wasm
