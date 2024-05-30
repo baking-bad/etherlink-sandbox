@@ -46,9 +46,10 @@ import_key() {
 }
 
 run_octez_node() {
-    octez-node config init --network "$TZNETWORK_ADDRESS"
+    wget -O network-params.json "$TZNETWORK_ADDRESS"
+    octez-node config init --network network-params.json
 
-    if [[ -n ${SNAPSHOT_URL} ]]; then
+    if [ -n ${SNAPSHOT_URL} ]; then
         wget -O "/snapshot" "${SNAPSHOT_URL}"
         octez-node snapshot import /snapshot
     fi
