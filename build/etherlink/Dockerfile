@@ -47,6 +47,7 @@ RUN apt-get -qq update && \
     sqlite3 \
     libsqlite3-dev \
     xxd \
+    netbase \
     ca-certificates
 COPY --from=fa-bridge-bins /usr/bin/octez-smart-rollup-node /usr/bin/octez-smart-rollup-node
 COPY --from=fa-bridge-bins /usr/bin/octez-client /usr/bin/octez-client
