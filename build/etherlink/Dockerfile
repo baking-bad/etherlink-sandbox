@@ -33,8 +33,19 @@ RUN make build-operator PACKAGE=${PACKAGE} CI_COMMIT_SHA=${CI_COMMIT_SHA}
 
 FROM ztepler/tezos-fabridge-bins:latest AS evm-node
 
-FROM alpine:3.15 AS etherlink
-RUN apk --no-cache add binutils gcc gmp libgmpxx hidapi libc-dev libev libffi sudo sqlite sqlite-libs sqlite-dev
+FROM ubuntu:20.04 AS etherlink
+RUN apt-get -qq update
+RUN apt-get install -y \
+    binutils \
+    gcc \
+    libgmp-dev \
+    libhidapi-dev \
+    libc6-dev \
+    libev-dev \
+    libffi-dev \
+    sudo \
+    sqlite3 \
+    libsqlite3-dev
 ARG OCTEZ_PROTO
 COPY --from=octez /usr/local/bin/octez-smart-rollup-node-${OCTEZ_PROTO} /usr/bin/octez-smart-rollup-node
 COPY --from=octez /usr/local/bin/octez-client /usr/bin/octez-client
