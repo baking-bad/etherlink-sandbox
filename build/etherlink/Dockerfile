@@ -14,6 +14,7 @@ RUN apt-get install -y -q \
     make \
     libc-dev \
     git \
+    xxd \
     clang
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
