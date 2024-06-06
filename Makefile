@@ -5,7 +5,7 @@
 .PHONY: test
 
 #-include envs/etherlink-nairobi.env
--include envs/etherlink-oxford.env
+-include envs/etherlink-paris.env
 
 BIN_DIR:=$$PWD/bin
 TARGET_DIR=$$PWD/target

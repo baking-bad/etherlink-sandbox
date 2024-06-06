@@ -52,7 +52,7 @@ jobs:
           file: build/etherlink/Dockerfile
           build-args: |
             OCTEZ_TAG=master
-            OCTEZ_PROTO=Proxford
+            OCTEZ_PROTO=PtParisB
             PACKAGE=evm_kernel
             TEZOS_REPO=https://gitlab.com/baking-bad/tezos.git
             TEZOS_REPO_BRANCH=feat/token-deposits-squashed-v6
@@ -70,7 +70,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      NETWORK: oxfordnet
+      NETWORK: parisnet
     steps:
       - name: Deploy rollup
         run: docker run -v "/var/run/docker.sock":"/var/run/docker.sock" -e NETWORK=${{ env.NETWORK }} -e OPERATOR_KEY=${{ secrets.OPERATOR_KEY }} -e BATCHER_KEY=${{ secrets.BATCHER_KEY }} ${{ needs.build.outputs.operator }} deploy_rollup --force | tee originate.out
