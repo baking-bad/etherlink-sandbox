@@ -10,16 +10,16 @@ client_dir="/root/.tezos-client"
 rollup_dir="/root/.tezos-smart-rollup-node"
 evm_dir="/root/.evm-node"
 endpoint=$NODE_URI
-faucet="https://faucet.$NETWORK.teztnets.xyz"
+faucet="https://faucet.$NETWORK.teztnets.com"
 
 if [ -z "$NODE_URI" ]; then
     if [ -z "$NETWORK" ]; then
         echo "NETWORK is not set"
         exit 1
     fi
-    #endpoint="https://rpc.$NETWORK.teztnets.xyz"
+    endpoint="https://rpc.$NETWORK.teztnets.com"
     #endpoint="https://$NETWORK.ecadinfra.com"
-    endpoint="https://rpc.tzkt.io/$NETWORK"
+    #endpoint="https://rpc.tzkt.io/$NETWORK"
 fi
 
 TZNETWORK_ADDRESS="https://teztnets.com/$NETWORK"
