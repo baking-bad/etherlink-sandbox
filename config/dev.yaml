@@ -2,7 +2,7 @@ instructions:
   - set:
       # KT1XWzGEJZ3aQvRB1Ki6k3gb8Gfgjgv1DCMm
       value: 4b543158577a47454a5a336151765242314b69366b336762384766676a67763144434d6d
-      to: /evm/ticketer
+      to: /evm/world_state/ticketer
   - set:
       value: 0000dc0a0713000c1e0200000000000000000000000000000000000000000000
       to: /evm/world_state/eth_accounts/befd2c6ffc36249ebebd21d6df6376ecf3bac448/balance
