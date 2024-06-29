@@ -1,7 +1,7 @@
 instructions:
   - set:
-      # KT1XWzGEJZ3aQvRB1Ki6k3gb8Gfgjgv1DCMm
-      value: 4b543158577a47454a5a336151765242314b69366b336762384766676a67763144434d6d
+      # KT1Bdyc1UcmjgPr3prJziMyfjSCPK6SEjfqs
+      value: 4b5431426479633155636d6a6750723370724a7a694d79666a5343504b3653456a667173
       to: /evm/world_state/ticketer
   - set:
       value: 0000dc0a0713000c1e0200000000000000000000000000000000000000000000
@@ -20,4 +20,4 @@ instructions:
       to: /evm/delayed_bridge
   - set:
       value: 42
-      to: /feature_flags/enable_fa_bridge
+      to: /evm/feature_flags/enable_fa_bridge
