@@ -52,7 +52,7 @@ jobs:
           file: build/etherlink/Dockerfile
           build-args: |
             OCTEZ_TAG=master
-            OCTEZ_PROTO=PtParisB
+            OCTEZ_PROTO=PsParisC
             PACKAGE=evm_kernel
             TEZOS_REPO=https://gitlab.com/baking-bad/tezos.git
             TEZOS_REPO_BRANCH=feat/token-deposits-squashed-v6
