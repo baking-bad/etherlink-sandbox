@@ -23,7 +23,7 @@ if [ -z "$NODE_URI" ]; then
 fi
 
 TZNETWORK_ADDRESS="https://teztnets.com/$NETWORK"
-SNAPSHOT_URL="https://snapshots.eu.tzinit.org/$NETWORK/rolling"
+SNAPSHOT_URL="https://snapshots.eu.tzinit.org/parisnet/rolling"
 
 command=$1
 shift 1
