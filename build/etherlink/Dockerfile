@@ -31,23 +31,8 @@ ARG PACKAGE
 ARG CI_COMMIT_SHA
 RUN make build-operator PACKAGE=${PACKAGE} CI_COMMIT_SHA=${CI_COMMIT_SHA}
 
-FROM ubuntu:22.04 AS etherlink
-RUN apt-get -qq update && \
-    apt-get install -y \
-    binutils \
-    gcc \
-    libgmp-dev \
-    libhidapi-dev \
-    libc6-dev \
-    libev-dev \
-    libffi-dev \
-    sudo \
-    sqlite3 \
-    libsqlite3-dev \
-    xxd \
-    netbase \
-    wget \
-    ca-certificates
+FROM alpine:3.15 AS etherlink
+RUN apk --no-cache add binutils gcc gmp libgmpxx hidapi libc-dev libev libffi sudo sqlite sqlite-libs sqlite-dev
 COPY --from=octez /usr/local/bin/octez-smart-rollup-node /usr/bin/octez-smart-rollup-node
 COPY --from=octez /usr/local/bin/octez-client /usr/bin/octez-client
 COPY --from=octez /usr/local/bin/octez-node /usr/bin/octez-node
