@@ -31,8 +31,6 @@ ARG PACKAGE
 ARG CI_COMMIT_SHA
 RUN make build-operator PACKAGE=${PACKAGE} CI_COMMIT_SHA=${CI_COMMIT_SHA}
 
-FROM ztepler/tezos-fabridge-bins:latest AS fa-bridge-bins
-
 FROM ubuntu:22.04 AS etherlink
 RUN apt-get -qq update && \
     apt-get install -y \
@@ -50,11 +48,11 @@ RUN apt-get -qq update && \
     netbase \
     wget \
     ca-certificates
-COPY --from=fa-bridge-bins /usr/bin/octez-smart-rollup-node /usr/bin/octez-smart-rollup-node
-COPY --from=fa-bridge-bins /usr/bin/octez-client /usr/bin/octez-client
-COPY --from=fa-bridge-bins /usr/bin/octez-node /usr/bin/octez-node
-COPY --from=fa-bridge-bins /usr/share/zcash-params/ /root/.zcash-params/
-COPY --from=fa-bridge-bins /usr/bin/octez-evm-node /usr/bin/octez-evm-node
+COPY --from=octez /usr/local/bin/octez-smart-rollup-node /usr/bin/octez-smart-rollup-node
+COPY --from=octez /usr/local/bin/octez-client /usr/bin/octez-client
+COPY --from=octez /usr/local/bin/octez-node /usr/bin/octez-node
+COPY --from=octez /usr/share/zcash-params/ /root/.zcash-params/
+COPY --from=octez /usr/local/bin/octez-evm-node /usr/bin/octez-evm-node
 COPY --from=builder /build/bin/wasm_2_0_0/ /root/wasm_2_0_0/
 ARG PACKAGE
 COPY --from=builder /build/bin/${PACKAGE}_installer.wasm /root/kernel.wasm

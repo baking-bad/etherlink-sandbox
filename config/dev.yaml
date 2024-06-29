@@ -18,3 +18,6 @@ instructions:
       # KT1Tdrs1K4B2upYmbHE1ZorcpgKEn5WhTwJk
       value: 4b543154647273314b3442327570596d624845315a6f726370674b456e35576854774a6b
       to: /evm/delayed_bridge
+  - set:
+      value: 42
+      to: /feature_flags/enable_fa_bridge
