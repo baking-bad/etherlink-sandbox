@@ -55,7 +55,7 @@ jobs:
             OCTEZ_PROTO=PsParisC
             PACKAGE=evm_kernel
             TEZOS_REPO=https://gitlab.com/tezos/tezos.git
-            TEZOS_REPO_BRANCH=m-kus@etherlink-fa-withdrawals-part-3
+            TEZOS_REPO_BRANCH=m-kus@etherlink-fa-bridge-tez-deposit-events
             CACHEBUST=${{ steps.cachebust.outputs.date }}
             CI_COMMIT_SHA=dev
           push: true
