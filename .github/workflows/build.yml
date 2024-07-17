@@ -54,8 +54,8 @@ jobs:
             OCTEZ_TAG=master
             OCTEZ_PROTO=PsParisC
             PACKAGE=evm_kernel
-            TEZOS_REPO=https://gitlab.com/tezos/tezos.git
-            TEZOS_REPO_BRANCH=m-kus@etherlink-fa-bridge-tez-deposit-events
+            TEZOS_REPO=https://gitlab.com/baking-bad/tezos.git
+            TEZOS_REPO_BRANCH=ztepler@etherlink-fa-bridge-tez-deposit-events@drop-encoding
             CACHEBUST=${{ steps.cachebust.outputs.date }}
             CI_COMMIT_SHA=dev
           push: true
