@@ -51,7 +51,7 @@ run_octez_node() {
 
     if [ -n ${SNAPSHOT_URL} ]; then
         wget -O "/snapshot" "${SNAPSHOT_URL}"
-        octez-node snapshot import /snapshot
+        octez-node snapshot import /snapshot --no-check
     fi
 
     octez-node run --rpc-addr=0.0.0.0:8732 --allow-all-rpc 0.0.0.0

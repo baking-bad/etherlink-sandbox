@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 ARG OCTEZ_TAG
-FROM tezos/tezos:${OCTEZ_TAG} AS octez
+FROM tezos/tezos-bare:${OCTEZ_TAG} AS octez
 
 FROM ubuntu:22.04 AS builder
 RUN apt-get -qq update
