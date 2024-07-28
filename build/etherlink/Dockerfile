@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
-ARG OCTEZ_TAG
+ARG OCTEZ_TAG=master
 FROM tezos/tezos-bare:${OCTEZ_TAG} AS octez
 
 FROM ubuntu:22.04 AS builder
@@ -17,7 +17,9 @@ RUN apt-get install -y -q \
     clang
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
-RUN rustup target add wasm32-unknown-unknown
+RUN rustup install 1.79 \
+ && rustup default 1.79 \
+ && rustup target add wasm32-unknown-unknown
 WORKDIR /build
 COPY config/dev.yaml ./config/dev.yaml
 COPY Makefile ./
