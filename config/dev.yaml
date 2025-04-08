@@ -1,7 +1,7 @@
 instructions:
   - set:
-      # KT1Bdyc1UcmjgPr3prJziMyfjSCPK6SEjfqs
-      value: 4b5431426479633155636d6a6750723370724a7a694d79666a5343504b3653456a667173
+      # KT1S3EJ3i27dnDVkKDVsmw1oyP2Z1CvPoEiG
+      value: 4b54315333454a33693237646e44566b4b4456736d77316f7950325a314376506f456947
       to: /evm/world_state/ticketer
   - set:
       value: 0000dc0a0713000c1e0200000000000000000000000000000000000000000000
@@ -19,5 +19,8 @@ instructions:
       value: 4b543154647273314b3442327570596d624845315a6f726370674b456e35576854774a6b
       to: /evm/delayed_bridge
   - set:
-      value: 42
+      value: 01
       to: /evm/feature_flags/enable_fa_bridge
+  - set:
+      value: 01
+      to: /evm/world_state/feature_flags/enable_fast_withdrawal
