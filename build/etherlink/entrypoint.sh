@@ -101,7 +101,6 @@ run_sequencer() {
         --preimages-dir /root/wasm_2_0_0 \
         --cors-origins '*' \
         --cors-headers '*' \
-        --devmode \
         --verbose
 }
 
