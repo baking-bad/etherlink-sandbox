@@ -16,10 +16,13 @@ RUN apt-get install -y -q \
     git \
     clang
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+
 ENV PATH="/root/.cargo/bin:${PATH}"
-RUN rustup install 1.79 \
- && rustup default 1.79 \
- && rustup target add wasm32-unknown-unknown
+
+# debug lock rust version
+RUN rustup install 1.79 && rustup default 1.79
+
+RUN rustup target add wasm32-unknown-unknown
 WORKDIR /build
 COPY config/dev.yaml ./config/dev.yaml
 COPY Makefile ./
