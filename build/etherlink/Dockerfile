@@ -36,8 +36,8 @@ ARG PACKAGE
 ARG CI_COMMIT_SHA
 RUN make build-operator PACKAGE=${PACKAGE} CI_COMMIT_SHA=${CI_COMMIT_SHA}
 
-FROM alpine:3.15 AS etherlink
-RUN apk --no-cache add binutils gcc gmp libgmpxx hidapi libc-dev libev libffi sudo sqlite sqlite-libs sqlite-dev
+FROM alpine:latest AS etherlink
+RUN apk --no-cache add binutils gcc gmp libgmpxx hidapi libc-dev libev libffi sudo sqlite sqlite-libs sqlite-dev openssl libcrypto3
 COPY --from=octez /usr/local/bin/octez-smart-rollup-node /usr/bin/octez-smart-rollup-node
 COPY --from=octez /usr/local/bin/octez-client /usr/bin/octez-client
 COPY --from=octez /usr/local/bin/octez-node /usr/bin/octez-node
