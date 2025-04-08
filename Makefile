@@ -11,7 +11,7 @@
 BIN_DIR:=$$PWD/bin
 TARGET_DIR=$$PWD/target
 CARGO_BIN_PATH:=$$HOME/.cargo/bin
-PACKAGE=evm_kernel
+PACKAGE=kernel
 CI_COMMIT_SHA=dev
 INSTALLER_CONF_PATH=$$PWD/config/dev.yaml
 
@@ -27,7 +27,6 @@ build-kernel:
 		--target-dir $(TARGET_DIR) \
 		--features debug,default \
 		--release \
-		-Z sparse-registry \
 		-Z avoid-dev-deps
 	wasm-strip -o $(BIN_DIR)/$(PACKAGE).wasm $(TARGET_DIR)/wasm32-unknown-unknown/release/$(PACKAGE).wasm
 

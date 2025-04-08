@@ -53,7 +53,7 @@ jobs:
           build-args: |
             OCTEZ_TAG=master
             OCTEZ_PROTO=PsQuebec
-            PACKAGE=evm_kernel
+            PACKAGE=kernel
             TEZOS_REPO=https://gitlab.com/tezos/tezos.git
             TEZOS_REPO_BRANCH=master
             CACHEBUST=${{ steps.cachebust.outputs.date }}
