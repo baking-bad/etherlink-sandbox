@@ -52,10 +52,10 @@ jobs:
           file: build/etherlink/Dockerfile
           build-args: |
             OCTEZ_TAG=master
-            OCTEZ_PROTO=PsParisC
-            PACKAGE=evm_kernel
+            OCTEZ_PROTO=PsQuebec
+            PACKAGE=kernel
             TEZOS_REPO=https://gitlab.com/tezos/tezos.git
-            TEZOS_REPO_BRANCH=m-kus@etherlink-fa-withdrawals-event-fields
+            TEZOS_REPO_BRANCH=master
             CACHEBUST=${{ steps.cachebust.outputs.date }}
             CI_COMMIT_SHA=dev
           push: true
@@ -70,7 +70,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      NETWORK: pariscnet
+      NETWORK: quebecnet
     steps:
       - name: Deploy rollup
         run: docker run -v "/var/run/docker.sock":"/var/run/docker.sock" -e NETWORK=${{ env.NETWORK }} -e OPERATOR_KEY=${{ secrets.OPERATOR_KEY }} -e BATCHER_KEY=${{ secrets.BATCHER_KEY }} ${{ needs.build.outputs.operator }} deploy_rollup --force | tee originate.out

@@ -23,7 +23,7 @@ if [ -z "$NODE_URI" ]; then
 fi
 
 TZNETWORK_ADDRESS="https://teztnets.com/$NETWORK"
-SNAPSHOT_URL="https://snapshots.eu.tzinit.org/parisnet/rolling"
+SNAPSHOT_URL="https://snapshots.eu.tzinit.org/$NETWORK/rolling"
 
 command=$1
 shift 1
@@ -101,7 +101,6 @@ run_sequencer() {
         --preimages-dir /root/wasm_2_0_0 \
         --cors-origins '*' \
         --cors-headers '*' \
-        --devmode \
         --verbose
 }
 
